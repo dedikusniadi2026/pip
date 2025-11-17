@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>Add New car</h2>
+<mat-dialog-content class="mat-typography">
+     <form [formGroup]="form">
+          <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+             
+              <div class="w-full">
+                  <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
+                  <input type="text" placeholder="toyota" formControlName="brand" name="brand" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+              </div>
+              <div class="w-full">
+                  <label for="model" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model</label>
+                  <input type="text" placeholder="inova" formControlName="model" name="model" id="model" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+              </div> 
+
+              <div class="w-full">
+                  <label for="year" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
+                  <input type="text" placeholder="2023" formControlName="year" name="year" id="year" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+              </div>
+              <div class="w-full">
+                  <label for="platNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Plate Number</label>
+                  <input type="text" placeholder="B 134 PU" formControlName="platNumber" name="platNumber" id="platNumber" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+              </div> 
+
+                <div class="w-full">
+                  <label for="capacity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Capacity (seats)</label>
+                  <input type="text" placeholder="7" formControlName="capacity" name="capacity" id="capacity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+              </div>
+              <div class="w-full">
+                  <label for="color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Color</label>
+                  <input type="text" placeholder="red" formControlName="color" name="color" id="color" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+              </div> 
+
+              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Driver Assignment</label>
+
+               <div class="sm:col-span-2">
+                  <label for="sim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Assigned Driver</label>
+                    <select formControlName="sim" id="sim"
+                            class="bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5">
+                            <option value="">Choose a driver</option>
+                            <option value="ahmad">Ahmad Rizki - Toyota Innova</option>
+                            <option value="budi">Budi Gunawan - Honda Mobilio</option>
+                            </select>      
+                </div>
+
+              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Maintenance Information</label>
+              <br>
+
+                <div class="w-full">
+                  <label for="last" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Maintenance Date</label>
+                  <input type="date" formControlName="last" name="last" id="last" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+              </div>
+              <div class="w-full">
+                  <label for="km" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current Mileage (km)</label>
+                  <input type="number" placeholder="4500" formControlName="km" name="km" id="km" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+              </div> 
+             
+          </div>
+      </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button matButton mat-dialog-close>Cancel</button>
+<button type="submit" (click)="onAdd()" class="bg-teal-600 text-white px-5 py-2 rounded-xl shadow hover:bg-teal-700">Add</button>
+</mat-dialog-actions>

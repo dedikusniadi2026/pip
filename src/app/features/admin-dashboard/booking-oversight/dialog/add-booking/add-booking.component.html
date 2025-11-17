@@ -1,0 +1,163 @@
+<h2 mat-dialog-title>Add New Booking</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="relative">
+    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+      <div class="w-full">
+        <label for="customer" class="block mb-2 text-sm font-medium">Customer Number <span class="text-red-500">*</span></label>
+        <input formControlName="customer" id="customer" type="text" placeholder="abdul"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5" />
+
+          @if (isInvalid('customer')) {
+            <small class="text-red-500 text-xs">
+                Customer name is required.
+            </small>
+          }
+      </div>
+
+      <div class="w-full">
+        <label for="phoneNumber" class="block mb-2 text-sm font-medium">Phone Number <span class="text-red-500">*</span> </label>
+        <input formControlName="phoneNumber" id="phoneNumber" type="text" placeholder="+6212345678"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5" />
+
+            @if (isInvalid('phoneNumber')) {
+            <small class="text-red-500 text-xs">
+                Phone Number is required.
+            </small>
+          }
+
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="email" class="block mb-2 text-sm font-medium">Email <span>(Optional)</span> </label>
+        <input formControlName="email" id="email" type="email" placeholder="admin@gmail.com"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5" />
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="driver" class="block mb-2 text-sm font-medium">Select Driver <span class="text-red-500">*</span></label>
+        <select formControlName="driver" id="driver"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5">
+          <option value="">Choose a driver</option>
+          <option value="ahmad">Ahmad Rizki - Toyota Innova - (D1234XD)</option>
+          <option value="budi">Budi Gunawan - Honda Mobilio - (D3453XD)</option>
+        </select>
+        @if (isInvalid('driver')) {
+            <small class="text-red-500 text-xs">
+                Driver is required.
+            </small>
+        }
+      </div>
+
+      <div class="sm:col-span-2 relative">
+        <label class="block mb-1 font-medium">Pickup Location <span class="text-red-500">*</span></label>
+        <input type="text" formControlName="pickupLocation" placeholder="Search pickup"
+          (input)="searchAddress($event.target.value, 'pickup')" autocomplete="off"
+          class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+
+          @if (isInvalid('pickupLocation')) {
+            <small class="text-red-500 text-xs">
+                pickup Location is required.
+            </small>
+        }
+
+        @if (pickupSuggestions.length) {
+            <ul class="absolute left-0 right-0 bg-white border max-h-40 overflow-auto z-50 mt-1">
+          <li *ngFor="let s of pickupSuggestions;" (click)="selectSuggestion(s,'pickup')"
+              class="p-2 hover:bg-cyan-100 cursor-pointer">{{ s.display_name }}</li>
+        </ul>
+        }
+
+      </div>
+
+      <div class="sm:col-span-2 relative">
+        <label class="block mb-1 font-medium">Drop-off Location <span class="text-red-500">*</span> </label>
+        <input type="text" formControlName="dropoffLocation" placeholder="Search drop-off"
+          (input)="searchAddress($event.target.value, 'dropoff')" autocomplete="off"
+          class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+
+             @if (isInvalid('dropoffLocation')) {
+            <small class="text-red-500 text-xs">
+                Drop off Location is required.
+            </small>
+        }
+
+        <ul *ngIf="dropoffSuggestions.length" class="absolute left-0 right-0 bg-white border max-h-40 overflow-auto z-50 mt-1">
+          <li *ngFor="let s of dropoffSuggestions" (click)="selectSuggestion(s,'dropoff')"
+              class="p-2 hover:bg-cyan-100 cursor-pointer">{{ s.display_name }}</li>
+        </ul>
+      </div>
+
+      <div class="w-full sm:col-span-2">
+        <div id="map" #mapContainer class="w-full h-64 rounded border"></div>
+      </div>
+
+      <div class="w-full">
+        <label for="date" class="block mb-2 text-sm font-medium">Pickup Date <span class="text-red-500">*</span></label>
+        <input formControlName="travelDate" id="date" type="date"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5" />
+
+           <!-- @if (isInvalid('date')) {
+            <small class="text-red-500 text-xs">
+                Date is required.
+            </small>
+        } -->
+          
+      </div>
+
+      <div class="w-full">
+        <label for="time" class="block mb-2 text-sm font-medium">Pickup Time <span class="text-red-500">*</span></label>
+        <input formControlName="time" id="time" type="time"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5" />
+            @if (isInvalid('time')) {
+            <small class="text-red-500 text-xs">
+                Time is required.
+            </small>
+        }
+      </div>
+
+      <div class="w-full">
+        <label for="payment" class="block mb-2 text-sm font-medium">Payment Method <span class="text-red-500">*</span> </label>
+        <select formControlName="payment" id="payment"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5">
+          <option value="cash">Cash</option>
+          <option value="transfer">Bank Transfer</option>
+        </select>
+
+          @if (isInvalid('payment')) {
+            <small class="text-red-500 text-xs">
+                Payment is required.
+            </small>
+        }
+
+      </div>
+
+      <div class="w-full">
+        <label for="amount" class="block mb-2 text-sm font-medium">Amount (IDR) <span class="text-red-500">*</span></label>
+        <input formControlName="amount" id="amount" type="number" placeholder="34000"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5" />
+
+           @if (isInvalid('amount')) {
+            <small class="text-red-500 text-xs">
+                Payment is required.
+            </small>
+        }
+
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="note" class="block mb-2 text-sm font-medium">Additional Note <span>(Optional)</span> </label>
+        <textarea formControlName="note" id="note" rows="4"
+          class="block p-2.5 w-full text-sm bg-gray-50 rounded-lg border border-gray-300" placeholder="note"></textarea>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="space-x-2">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="primary"
+          (click)="onSubmit()"
+          class="text-white rounded-full px-5 py-2.5">
+    Add
+  </button>
+</mat-dialog-actions>

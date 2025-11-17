@@ -1,0 +1,29 @@
+<div class="border border-slate-200 rounded-xl p-6 shadow-sm bg-white">
+<div class="flex items-start justify-between mb-4">
+<h2 class="text-2xl font-semibold text-slate-800">Booking <span class="font-bold">#{{booking.id}}</span></h2>
+<span [ngClass]="statusClasses(booking.status)" class="px-3 py-1 rounded-full text-sm font-medium">{{booking.status}}</span>
+</div>
+
+
+<ul class="space-y-3 text-slate-700 mb-4">
+<li class="flex items-center">{{booking.customer}}</li>
+<li class="flex items-center text-slate-500">Driver: <strong class="ml-1 text-slate-800">{{booking.driver}}</strong></li>
+<li class="flex items-center text-slate-500">{{booking.place}}</li>
+<li class="flex items-center text-slate-500">{{booking.date}}</li>
+</ul>
+
+
+<hr class="border-slate-100 mb-4">
+
+
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="text-slate-500">Rp</div>
+<div class="text-xl font-semibold">Rp{{booking.price}}</div>
+<div [ngClass]="paymentClasses(booking.payment)" class="px-3 py-1 rounded-full text-sm font-medium">{{booking.payment}}</div>
+</div>
+
+
+<button (click)="ViewDialog(booking.id)" class="px-4 py-2 bg-white border border-slate-200 rounded-lg shadow-sm">View Details</button>
+</div>
+</div>

@@ -1,0 +1,11 @@
+<div class="flex h-screen">
+  <app-sidebar [collapsed]="isSidebarCollapsed" 
+  (toggle)="toggleSidebar()"
+  [role]="auth.user()?.role ?? null"></app-sidebar>
+  <div class="flex-1 flex flex-col">
+    <app-topbar></app-topbar>
+    <main class="p-6 bg-gray-100 flex-1 overflow-auto">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

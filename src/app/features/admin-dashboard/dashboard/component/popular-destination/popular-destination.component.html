@@ -1,0 +1,14 @@
+<div class="p-4">
+      <h2 class="text-xl font-semibold mb-3">Popular Destinations</h2>
+      <div class="bg-white rounded-xl shadow p-4 h-100 md:h-100 lg:h-100">
+        <div class="w-full h-72 md:h-80 lg:h-96">
+          <canvas
+          class="w-full h-64"
+          baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [type]="barChartType">
+        </canvas>
+        </div>
+      </div>
+    </div>

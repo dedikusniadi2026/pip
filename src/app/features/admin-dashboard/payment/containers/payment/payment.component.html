@@ -1,0 +1,68 @@
+<div>
+  <h1 class="text-4xl font-extrabold text-slate-800">Payments</h1>
+  <p class="text-slate-500">Track and manage payment transactions</p>
+</div> <br>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Payment</label>
+    <div class="flex items-center justify-between mb-2">
+      <h5 class="text-2xl font-semibold tracking-tight text-green-500 dark:text-white">Rp 930,000</h5>
+    </div>
+  </div>
+
+  <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pending Payments</label>
+    <div class="flex items-center justify-between mb-2">
+      <h5 class="text-2xl font-semibold tracking-tight text-orange-500 dark:text-white">Rp 350,000</h5>
+    </div>
+  </div>
+
+  <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Transactions</label>
+    <div class="flex items-center justify-between mb-2">
+      <h5 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">5</h5>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="p-6 bg-white rounded-lg shadow">
+  <h2 class="text-2xl font-semibold mb-6">Payment Transactions</h2>
+
+  <div class="flex flex-col md:flex-row justify-between mb-6 gap-3">
+    <div class="relative w-full md:w-1/3">
+      <input
+        type="text"
+        placeholder="Search payments..."
+        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+      />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5 absolute left-3 top-2.5 text-gray-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m21 21-4.35-4.35M11 5a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"
+        />
+      </svg>
+    </div>
+
+    <select
+      class="border border-gray-300 px-4 py-2 rounded-lg w-full md:w-40 focus:ring-blue-500 focus:ring-2"
+    >
+      <option>All Status</option>
+      <option>Paid</option>
+      <option>Pending</option>
+    </select>
+  </div>
+
+  <app-payment-table></app-payment-table>
+
+</div>

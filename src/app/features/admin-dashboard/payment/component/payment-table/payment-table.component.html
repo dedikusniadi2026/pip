@@ -1,0 +1,60 @@
+  <div class="overflow-x-auto">
+    <table class="min-w-full border-separate border-spacing-y-3">
+      <thead>
+        <tr class="text-left text-sm text-gray-600">
+          <th class="px-3">Payment ID</th>
+          <th class="px-3">Booking ID</th>
+          <th class="px-3">Customer</th>
+          <th class="px-3">Driver</th>
+          <th class="px-3">Amount</th>
+          <th class="px-3">Method</th>
+          <th class="px-3">Status</th>
+          <th class="px-3">Date</th>
+          <th class="px-3">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody class="text-sm">
+        <tr
+          *ngFor="let p of paymentData"
+          class="bg-white shadow-sm rounded-lg"
+        >
+          <td class="px-3 py-3 font-medium">{{ p.paymentId }}</td>
+          <td class="px-3">{{ p.bookingId }}</td>
+          <td class="px-3">{{ p.customer }}</td>
+          <td class="px-3">{{ p.driver }}</td>
+          <td class="px-3 font-semibold">Rp {{ p.amount | number }}</td>
+
+          <!-- METHOD BADGE -->
+          <td class="px-3">
+            <span
+              class="px-3 py-1 rounded-full text-xs"
+              [ngClass]="{
+                'bg-blue-100 text-blue-700': p.method === 'cash',
+                'bg-indigo-100 text-indigo-700': p.method === 'transfer'
+              }"
+              >{{ p.method }}</span
+            >
+          </td>
+
+          <!-- STATUS BADGE -->
+          <td class="px-3">
+            <span
+              class="px-3 py-1 rounded-full text-xs"
+              [ngClass]="{
+                'bg-green-100 text-green-700': p.status === 'paid',
+                'bg-yellow-100 text-yellow-700': p.status === 'pending'
+              }"
+              >{{ p.status }}</span
+            >
+          </td>
+
+          <td class="px-3">{{ p.date }}</td>
+
+          <td class="px-3">
+            <button class="text-blue-600 hover:underline">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

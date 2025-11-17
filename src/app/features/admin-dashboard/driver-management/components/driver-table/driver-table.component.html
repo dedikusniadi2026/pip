@@ -1,0 +1,71 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+          <th class="px-6 py-3 cursor-pointer" (click)="sort('fullName')">
+            Name
+            <span *ngIf="sortColumn === 'fullName'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+          </th>
+          <th class="px-6 py-3 cursor-pointer" (click)="sort('licenseNumber')">
+            License
+            <span *ngIf="sortColumn === 'licenseNumber'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+          </th>
+          <th class="px-6 py-3 cursor-pointer" (click)="sort('licenseNumber')">
+            Type
+            <span *ngIf="sortColumn === 'licenseNumber'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+          </th>
+          <th class="px-6 py-3 cursor-pointer" (click)="sort('contractStatus')">
+            Status
+            <span *ngIf="sortColumn === 'contractStatus'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+          </th>
+          <th class="px-6 py-3">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of drivers;" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ d.fullName }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ d.licenseNumber }}
+                </td>
+                <td class="px-4 py-2 text-sm">
+    <div class="text-sm">{{ d.currentVehicle?.vehicleType || '-' }}</div>
+    <div class="text-xs text-gray-500">{{ d.currentVehicle?.plateNumber || '-' }}</div>
+  </td>
+                <td class="px-6 py-4">
+                    @if (d.contractStatus === 'Active') {
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        {{ d.contractStatus }} </span> 
+                    }
+                    @if(d.contractStatus === 'On Leave') {
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                        {{ d.contractStatus }} </span> 
+                    }
+                </td>
+                <td class="px-6 py-4">
+                @if (d.contractStatus !== 'Active') {
+                    <button
+                    class="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-300 font-medium rounded-md text-xs px-3 py-1.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
+                    (click)="approve.emit(d.driverId)">
+                    Approve
+                    </button>
+                } &nbsp;
+                @if (d.contractStatus !== 'Inactive') {
+                    <button
+                    class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-2 focus:outline-none focus:ring-red-300 font-medium rounded-md text-xs px-3 py-1.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                    (click)="reject.emit({ driverId: d.driverId, reason: 'Not Valid' })">
+                    Reject
+                    </button>
+                }
+                <button
+                    class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs px-3 py-1.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+                    (click)="review.emit(d)">
+                    Review
+                </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

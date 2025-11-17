@@ -1,0 +1,13 @@
+<h2 class="text-lg font-bold mb-4">Review Driver Documents</h2>
+
+<div class="mb-4">
+  <p><strong>Name:</strong> {{ data.driver.fullName }}</p>
+  <p><strong>Status:</strong> {{ data.driver.contractStatus }}</p>
+  <p><strong>Driver ID:</strong> {{ data.driver.driverId }}</p>
+</div>
+
+<div class="flex justify-end gap-2">
+  <button mat-button (click)="reject()">Reject</button>
+  <button mat-button color="primary" (click)="approve()">Approve</button>
+  <button mat-button (click)="close()">Close</button>
+</div>
